@@ -8,5 +8,5 @@ __Notice:__ This is just an example and needs further customization. The product
 ```
 $ git clone git@github.com:flootr/redux-login
 $ cd redux-login && npm install
-$ npm run dev
+$ npm start
 ```
