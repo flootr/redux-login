@@ -5,6 +5,7 @@ function getInitialState() {
         auth_token: null,
         username: null,
         loginPending: false,
+        error: null
     }
 }
 
@@ -17,6 +18,7 @@ function authReducer(state = getInitialState(), action) {
         case "LOGIN_FAILED":
             return Object.assign({}, state, {
                 loginPending: false,
+                error: action.error
             });
         case "LOGIN_SUCCESSFUL":
             return Object.assign({}, state, {
