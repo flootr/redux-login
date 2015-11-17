@@ -1,13 +1,17 @@
 "use strict";
 
 import React from "react";
+import { Provider } from "react-redux";
+import store from "./store";
+
+import Login from "./components/Login";
 
 export const App = React.createClass({
     render () {
         return (
-            <div>
-                <h1>Wow!</h1>
-            </div>
+            <Provider store={store}>
+                <Login/>
+            </Provider>
         );
     }
 });
