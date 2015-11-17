@@ -2,6 +2,8 @@
 
 simple react login boilerplate using redux
 
+__Notice:__ This is just an example and needs further customization.
+
 ## Usage
 
 ```
