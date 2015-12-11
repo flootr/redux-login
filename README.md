@@ -2,7 +2,8 @@
 
 simple react login boilerplate using redux
 
-__Notice:__ This is just an example and needs further customization. The production build is not ready yet (e.g. there is no `/login` route on a production build).
+__Notice:__ This is just an example and needs further customization. Thus there is no production build included.
+
 ## Usage
 
 ```
