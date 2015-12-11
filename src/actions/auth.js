@@ -1,26 +1,20 @@
 "use strict";
 
-function processLogin() {
-    return {
-        type: "PROCESSING_LOGIN"
-    }
-}
+export const processLogin = () => ({
+  type: "PROCESSING_LOGIN"
+});
 
-function loginFailed(error) {
-    return {
-        type: "LOGIN_FAILED",
-        error
-    }
-}
+export const loginFailed = (error) => ({
+  type: "LOGIN_FAILED",
+  error
+});
 
-function loginSuccessful(user) {
-    return {
-        type: "LOGIN_SUCCESSFUL",
-        user
-    }
-}
+export const loginSuccessful = (user) => ({
+  type: "LOGIN_SUCCESSFUL",
+  user
+});
 
-export function login(user) {
+export const login = (user) => {
     return (dispatch) => {
         dispatch(processLogin());
 
@@ -52,8 +46,6 @@ export function login(user) {
     }
 }
 
-export function logout() {
-    return {
-        type: "LOGOUT"
-    }
-}
+export const logout = () => ({
+    type: "LOGOUT"
+});
