@@ -1,4 +1,4 @@
-# react/redux login
+# redux login
 
 simple react login boilerplate using redux
 
