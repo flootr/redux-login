@@ -1,20 +1,14 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
+  "extends": [
+      "airbnb"
+  ],
   "parser": "babel-eslint",
   "rules": {
-    "quotes": [2, "double"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
-  },
-  "plugins": [
-    "react"
-  ]
+      "strict": 0
+  }
 }
