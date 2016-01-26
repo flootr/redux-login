@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 function authToken(state = null, action) {
   switch (action.type) {
     case 'LOGIN_SUCCESSFUL':
-      return action.user.authToken;
+      return action.payload.user.authToken;
     case 'LOGOUT':
       return null;
     default:
@@ -16,7 +16,7 @@ function authToken(state = null, action) {
 function username(state = null, action) {
   switch (action.type) {
     case 'LOGIN_SUCCESSFUL':
-      return action.user.username;
+      return action.payload.user.username;
     case 'LOGOUT':
       return null;
     default:
@@ -40,7 +40,7 @@ function loginPending(state = false, action) {
 function error(state = null, action) {
   switch (action.type) {
     case 'LOGIN_FAILED':
-      return action.error;
+      return action.payload;
     default:
       return state;
   }

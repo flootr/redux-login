@@ -7,15 +7,17 @@ import { connect } from 'react-redux';
 import { login, logout } from '../actions/auth';
 
 class Login extends Component {
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    auth: React.PropTypes.object.isRequired,
+  constructor(props) {
+    super(props);
+
+    this._login = this._login.bind(this);
+    this._logout = this._logout.bind(this);
   }
 
   _login(e) {
-    const { dispatch } = this.props;
-
     e.preventDefault();
+
+    const { dispatch } = this.props;
 
     dispatch(login({
       username: this.refs.username.value,
@@ -24,9 +26,9 @@ class Login extends Component {
   }
 
   _logout(e) {
-    const { dispatch } = this.props;
-
     e.preventDefault();
+
+    const { dispatch } = this.props;
 
     dispatch(logout());
   }

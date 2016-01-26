@@ -2,24 +2,8 @@
 
 import fetch from 'isomorphic-fetch';
 
-export const processLogin = () => ({
-  type: 'PROCESSING_LOGIN',
-});
-
-export const loginFailed = (error) => ({
-  type: 'LOGIN_FAILED',
-  error,
-});
-
-export const loginSuccessful = (user) => ({
-  type: 'LOGIN_SUCCESSFUL',
-  user,
-});
-
-export const login = (user) => (dispatch) => {
-  dispatch(processLogin());
-
-  fetch('/login', {
+function prepareFetch(user) {
+  return {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -29,20 +13,15 @@ export const login = (user) => (dispatch) => {
       username: user.username,
       password: user.password,
     }),
-  })
-  .then((res) => res.json())
-  .then((res) => {
-    if (res.status === 'success') {
-      dispatch(loginSuccessful(res.user));
-      return;
-    }
+  };
+}
 
-    dispatch(loginFailed(res.message));
-  })
-  .catch((err) => {
-    dispatch(loginFailed(err));
-  });
-};
+export function login(user) {
+  return {
+    types: ['PROCESSING_LOGIN', 'LOGIN_SUCCESSFUL', 'LOGIN_FAILED'],
+    callApi: () => fetch('/login', prepareFetch(user)).then((res) => res.json()),
+  };
+}
 
 export const logout = () => ({
   type: 'LOGOUT',

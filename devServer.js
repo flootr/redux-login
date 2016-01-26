@@ -25,7 +25,7 @@ app.post('/login', (req, res) => {
     return res.json({
       status: 'success',
       user: {
-        auth_token: 'SUPERSECRETAUTHTOKENPROPAPLYJWT',
+        authToken: 'SUPER_SECRET_AUTH_TOKEN_PROBABLY_JWT',
         username: req.body.username,
       },
     });

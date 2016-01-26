@@ -44,7 +44,7 @@ describe('auth reducer', () => {
 
     expect(reducer(initialState, {
       type: 'LOGIN_FAILED',
-      error: new Error('request failed'),
+      payload: new Error('request failed'),
     }), 'to equal', {
       authToken: null,
       username: null,
@@ -63,9 +63,11 @@ describe('auth reducer', () => {
 
     const action = {
       type: 'LOGIN_SUCCESSFUL',
-      user: {
-        username: 'test',
-        authToken: 'damn-auth-code',
+      payload: {
+        user: {
+          username: 'test',
+          authToken: 'damn-auth-code',
+        },
       },
     };
 
