@@ -41,6 +41,10 @@ function error(state = null, action) {
   switch (action.type) {
     case 'LOGIN_FAILED':
       return action.payload;
+    case 'PROCESSING_LOGIN':
+    case 'LOGIN_SUCCESSFUL':
+    case 'LOGOUT':
+      return null;
     default:
       return state;
   }

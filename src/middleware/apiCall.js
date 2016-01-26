@@ -32,6 +32,7 @@ export function apiCall({ dispatch }) {
 
         if (res.status === 'success') {
           dispatch({ type: successType, payload: res });
+          return;
         }
 
         dispatch({ type: failureType, payload: 'bad credentials' });
