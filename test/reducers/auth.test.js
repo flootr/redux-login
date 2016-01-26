@@ -7,7 +7,7 @@ const freeze = require("deep-freeze");
 describe("auth reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {}), "to equal", {
-      auth_token: null,
+      authToken: null,
       username: null,
       loginPending: false,
       error: null
@@ -16,16 +16,16 @@ describe("auth reducer", () => {
 
   it("should handle PROCESSING_LOGIN", () => {
     const initialState = {
-        auth_token: null,
-        username: null,
-        loginPending: false,
-        error: null
+      authToken: null,
+      username: null,
+      loginPending: false,
+      error: null
     };
 
     freeze(initialState);
 
-    expect(reducer(initialState, { type: "PROCESSING_LOGIN" }), "to equal", {
-      auth_token: null,
+    expect(reducer(initialState, {type: "PROCESSING_LOGIN"}), "to equal", {
+      authToken: null,
       username: null,
       loginPending: true,
       error: null
@@ -34,16 +34,19 @@ describe("auth reducer", () => {
 
   it("should handle LOGIN_FAILED", () => {
     const initialState = {
-        auth_token: null,
-        username: null,
-        loginPending: true,
-        error: null
+      authToken: null,
+      username: null,
+      loginPending: true,
+      error: null
     };
 
     freeze(initialState);
 
-    expect(reducer(initialState, { type: "LOGIN_FAILED", error: new Error("request failed") }), "to equal", {
-      auth_token: null,
+    expect(reducer(initialState, {
+      type: "LOGIN_FAILED",
+      error: new Error("request failed")
+    }), "to equal", {
+      authToken: null,
       username: null,
       loginPending: false,
       error: new Error("request failed")
@@ -52,24 +55,24 @@ describe("auth reducer", () => {
 
   it("should handle LOGIN_SUCCESSFUL", () => {
     const initialState = {
-        auth_token: null,
-        username: null,
-        loginPending: true,
-        error: null
+      authToken: null,
+      username: null,
+      loginPending: true,
+      error: null
     };
 
     const action = {
       type: "LOGIN_SUCCESSFUL",
       user: {
         username: "test",
-        auth_token: "damn-auth-code"
+        authToken: "damn-auth-code"
       }
     }
 
     freeze(initialState);
 
     expect(reducer(initialState, action), "to equal", {
-      auth_token: "damn-auth-code",
+      authToken: "damn-auth-code",
       username: "test",
       loginPending: false,
       error: null
@@ -78,7 +81,7 @@ describe("auth reducer", () => {
 
   it("should handle LOGOUT", () => {
     const initialState = {
-      auth_token: "damn-auth-code",
+      authToken: "damn-auth-code",
       username: "test",
       loginPending: false,
       error: null
@@ -86,8 +89,8 @@ describe("auth reducer", () => {
 
     freeze(initialState);
 
-    expect(reducer(initialState, { type: "LOGOUT" }), "to equal", {
-      auth_token: null,
+    expect(reducer(initialState, {type: "LOGOUT"}), "to equal", {
+      authToken: null,
       username: null,
       loginPending: false,
       error: null

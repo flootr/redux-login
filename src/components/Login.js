@@ -1,61 +1,72 @@
-"use strict";
+'use strict';
 
-import React from "react";
-import { connect } from "react-redux";
-import { login, logout } from "../actions/auth";
+/* eslint-disable react/prop-types */
 
-const Login = React.createClass({
-    render() {
-        const { auth } = this.props;
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { login, logout } from '../actions/auth';
 
-        if (auth.username) {
-            return (
-                <div>
-                    <h1># Login</h1>
-                    <h2>Logged in as {auth.username}</h2>
+class Login extends Component {
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
+    auth: React.PropTypes.object.isRequired,
+  }
 
-                    <button onClick={this._logout}>Logout</button>
-                </div>
-            );
-        }
+  _login(e) {
+    const { dispatch } = this.props;
 
-        return (
-            <div>
-                <h1># Login</h1>
-                { auth.error ? auth.error : ""}
-                <form onSubmit={this._login}>
-                    <p>
-                        <input type="text" name="username" ref="username"/>
-                    </p>
-                    <p>
-                        <input type="password" name="password" ref="password"/>
-                    </p>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        )
-    },
+    e.preventDefault();
 
-    _login(e) {
-        e.preventDefault();
+    dispatch(login({
+      username: this.refs.username.value,
+      password: this.refs.password.value,
+    }));
+  }
 
-        this.props.dispatch(login({
-            username: this.refs.username.value,
-            password: this.refs.password.value
-        }));
-    },
+  _logout(e) {
+    const { dispatch } = this.props;
 
-    _logout(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        this.props.dispatch(logout());
+    dispatch(logout());
+  }
+
+  render() {
+    const { auth } = this.props;
+
+    if (auth.username) {
+      return (
+        <div>
+          <h1># Login</h1>
+          <h2>Logged in as {auth.username}</h2>
+
+          <button onClick={this._logout}>Logout</button>
+        </div>
+      );
     }
-});
+
+    return (
+      <div>
+        <h1># Login</h1>
+        { auth.error ? auth.error : ''}
+        <form onSubmit={this._login}>
+            <p>
+                <input type="text" name="username" ref="username"/>
+            </p>
+            <p>
+                <input type="password" name="password" ref="password"/>
+            </p>
+            <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 function select(state) {
-    return {
-        auth: state.auth
-    }
+  return {
+    auth: state.auth,
+  };
 }
 
 export default connect(select)(Login);
