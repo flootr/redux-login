@@ -28,8 +28,6 @@ export function apiCall({ dispatch }) {
 
     return callApi()
       .then((res) => {
-        console.log(res);
-
         if (res.status === 'success') {
           dispatch({ type: successType, payload: res });
           return;
