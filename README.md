@@ -1,15 +1,10 @@
-# redux login
+# React & Redux Login Example (using Auth0)
 
-__Note:__ This may be worth a look [mxstbr/login-flow](https://github.com/mxstbr/login-flow)
+- WIP, not 100% ready yet
 
-simple react login boilerplate using redux
+To run this example you should provide a `.env` file which contains your `clientId` and `domain` from Auth0:
 
-__Notice:__ This is just an example and needs further customization. Thus there is no production build included.
-
-## Usage
-
-```
-$ git clone git@github.com:flootr/redux-login
-$ cd redux-login && npm install
-$ npm start
+```js
+REACT_APP_AUTH0_CLIENT_ID=<clientId>
+REACT_APP_AUTH0_DOMAIN=<domain>
 ```
